@@ -54,7 +54,8 @@ function handleSearchFormSubmit(event) {
 
 function createMarkup(data){
     const markupList = createImageMarkup(data);
-    listGallery.insertAdjacentHTML('beforeend' , markupList )
+    listGallery.insertAdjacentHTML('beforeend' , markupList );
+    lightbox.refresh();
 }
 
 function createImageMarkup(images) {
