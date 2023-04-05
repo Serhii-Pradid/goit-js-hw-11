@@ -14,4 +14,43 @@
   margin-left: 40px;
 }
 
+.gallery,
+.info {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.photo-card_image{
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.load-more {
+  width: 200px;
+  height: 40px;
+
+  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 16px;
+
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: background-color 300ms linear, color 300ms linear;
+
+  &:hover,
+  &:focus {
+      background-color: #0f3443;
+      color: #ffffff;
+  }
+
+  &.is-hidden {
+      display: none;
+  }
+}

@@ -16,6 +16,7 @@ let page = 1;
 const perPage = 40;
 
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+loadMoreBtn.addEventListener('click' , handleLoadMoreBtnClick);
 
 function clearMarkup() {
     listGallery.innerHTML = '';
@@ -30,7 +31,6 @@ function handleSearchFormSubmit(event) {
     clearMarkup();
 
     if (!query) {
-        //loadMoreBtn.classList.add('is-hidden');
         return Notify.failure('Please enter a title!');
         }
 
@@ -45,11 +45,35 @@ function handleSearchFormSubmit(event) {
 
     Notify.success(`"Hooray! We found ${data.totalHits} images."`);
     createMarkup(data.hits);
+    
+
+    if(data.totalHits < perPage) {
+    return;
+    }
+
+    loadMoreBtn.classList.remove('is-hidden');
  })
 .catch(error => console.log(error))
 .finally(() => {
   searchFormEl.reset();
 });
+}
+
+function handleLoadMoreBtnClick() {
+    page +=1;
+
+    fetchImage(query, page, perPage)
+    .then(data => {
+        createMarkup(data.hits);
+        
+    const totalPage = Math.ceil(data.totalHits/perPage)
+    
+    if(page > totalPage) {
+        Notify.failure("We're sorry, but you've reached the end of search results.")
+           loadMoreBtn.classList.add('is-hidden');
+        }   
+        })
+    .catch(error => console.log(error));
 }
 
 function createMarkup(data){
@@ -63,9 +87,11 @@ function createImageMarkup(images) {
     ({webformatURL, largeImageURL, tags, likes, views, comments, downloads}) => {
     return `
     <div class="photo-card">
-     <a href="${largeImageURL}">
+    <div class="photo-card_image">
+     <a class="image "href="${largeImageURL}">
      <img src="${webformatURL}" alt="${tags}" loading="lazy" />
      </a>
+     </div>
     <div class="info">
     <p class="info-item"><b>Likes</b>${likes}</p>
     <p class="info-item"><b>Views</b>${views}</p>
