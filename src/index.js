@@ -22,14 +22,14 @@ function clearMarkup() {
     listGallery.innerHTML = '';
    }
 
-
 function handleSearchFormSubmit(event) {
     event.preventDefault();
-
+    
+     page = 1;
      query = event.currentTarget.elements.searchQuery.value.trim();
 
     clearMarkup();
-
+    
     if (!query) {
         return Notify.failure('Please enter a title!');
         }
@@ -46,7 +46,6 @@ function handleSearchFormSubmit(event) {
     Notify.success(`"Hooray! We found ${data.totalHits} images."`);
     createMarkup(data.hits);
     
-
     if(data.totalHits < perPage) {
     return;
     }
@@ -69,8 +68,9 @@ function handleLoadMoreBtnClick() {
     const totalPage = Math.ceil(data.totalHits/perPage)
     
     if(page > totalPage) {
+        
         Notify.failure("We're sorry, but you've reached the end of search results.")
-           loadMoreBtn.classList.add('is-hidden');
+        loadMoreBtn.classList.add('is-hidden');
         }   
         })
     .catch(error => console.log(error));
@@ -88,7 +88,7 @@ function createImageMarkup(images) {
     return `
     <div class="photo-card">
     <div class="photo-card_image">
-     <a class="image "href="${largeImageURL}">
+     <a class="image" href="${largeImageURL}">
      <img src="${webformatURL}" alt="${tags}" loading="lazy" />
      </a>
      </div>
