@@ -88,8 +88,8 @@ function createImageMarkup(images) {
     return `
     <div class="photo-card">
     <div class="photo-card_image">
-     <a class="image" href="${largeImageURL}">
-     <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+     <a href="${webformatURL}">
+     <img class="image" src="${largeImageURL}" alt="${tags}" loading="lazy" />
      </a>
      </div>
     <div class="info">

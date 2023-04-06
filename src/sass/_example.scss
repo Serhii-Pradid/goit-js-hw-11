@@ -28,6 +28,7 @@ p {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: rgb(40, 110, 77);
+  z-index: 1;
 }
 
 .search-form input {
@@ -57,7 +58,7 @@ p {
   padding-right: 15px;
   padding-bottom: 20px;
   padding-top: 100px;
-  background-color: rgb(222, 243, 233);;
+  background-color: rgb(222, 243, 233);
   }
 
 .gallery,
@@ -68,12 +69,12 @@ p {
 }
 
 .photo-card {
+  
   margin-top: 20px;
   margin-left: 20px;
-  min-width: 320px;
-  flex-basis: calc((100% - 80px) / 4);
+  min-width: 400px;
+  //flex-basis: calc((100% - 80px) / 4);
   border: none;
-  //border-radius: 10px;
   overflow: hidden;
   transition: all 0.3s;
 
@@ -87,8 +88,16 @@ p {
   width: 400px;
   height: 300px;
   overflow: hidden;
-  object-fit: cover;
+  border-radius: 10px;
+  //object-fit: cover;
 }
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+ }
+
 
 .info {
   font-size: small;
@@ -109,6 +118,7 @@ p {
 .load-more {
   width: 200px;
   height: 40px;
+  background-color: rgb(222, 243, 233);
 
   margin-top: 50px;
   margin-bottom: 30px;
